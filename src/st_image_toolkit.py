@@ -140,18 +140,18 @@ def create_labels(input_shapefile, template_raster, output_raster, bands=['Ammon
     return os.path.basename(output_raster)
 
 
-def create_weather_band(geotiff_dir, gerk, wb_stations, bands, **kwargs):    
+def create_weather_bands(geotiff_dir, gerk, weather_stations, bands, **kwargs):    
     # ### Get weather information for each GERK (via weighted nearest neighbor query).
     gerk_geom = gpd.read_file(os.path.join(geotiff_dir, gerk.GERK_SHP))
     gerk_centroid = gerk_geom.unary_union.centroid
 
-    _, wb_ix = wb_stations.sindex.nearest(gerk_centroid)
-    sensor_id = wb_stations.iloc[wb_ix]['ObjectId'].values[0]
+    _, ix = weather_stations.sindex.nearest(gerk_centroid)
+    sensor_id = weather_stations.iloc[ix]['ObjectId'].values[0]
 
-    gerk_weather = ds.wb_query_weather(
+    gerk_weather = ds.get_weather_data(
         sensor_id=sensor_id, 
         timestamp=gerk.Index[1], 
-        weather_feats=bands,
+        weather_bands=bands,
         **kwargs
     )
 
