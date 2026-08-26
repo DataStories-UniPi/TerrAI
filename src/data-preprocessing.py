@@ -168,7 +168,7 @@ if __name__ == '__main__':
 
     # %%
     # # Feature Selection
-    all_feats = [*SPECTRAL_BANDS_NAMES, *WEATHER_BANDS_RS_NAMES, 'AMMONITRAT']
+    all_feats = [*SPECTRAL_BANDS_NAMES, *WEATHER_BANDS_RS_NAMES]
     # print(all_feats)
 
     selected_features = [*args.spectral_bands, *args.weather_bands]

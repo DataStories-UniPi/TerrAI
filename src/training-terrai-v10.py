@@ -72,7 +72,7 @@ if __name__ == '__main__':
         ).T.reshape(-1, 2)
     ]
 
-    ALL_FEATURES = [*SPECTRAL_BANDS_NAMES, *WB_WEATHER_BANDS_RS_NAMES, 'AMMONITRAT']
+    ALL_FEATURES = [*SPECTRAL_BANDS_NAMES, *WB_WEATHER_BANDS_RS_NAMES]
     
     # # Feature Selection
     selected_features = [*args.spectral_bands, *args.weather_bands]
