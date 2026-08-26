@@ -1,5 +1,5 @@
 # TerrAI
-Source code for the paper "Towards Data-driven Nitrogen Estimation in Wheat Fields using Multispectral Images"
+Source code for the paper "TerrAI: Energy-Efficient Nitrogen Prescription Mapping for Precision Agriculture"
 
 # Table of Contents
 - Overview
@@ -16,7 +16,7 @@ Source code for the paper "Towards Data-driven Nitrogen Estimation in Wheat Fiel
 - Acknowledgement
 
 # Overview 
-TerrAI is an efficient CNN-based solution for Targeted Spraying and Fertilization (TSF) over wheat fields. It ingests raw field data (Excel sheets, shapefiles, GeoTIFFs), enriches it with weather information, creates raster patches, trains a UNet model, and produces visualizations of forecasted prescriptions.
+TerrAI is an energy-efficient CNN-based solution for Targeted Spraying and Fertilization (TSF) over wheat fields. It ingests raw field data (Excel sheets, shapefiles, GeoTIFFs), enriches it with weather information, creates raster patches, trains a U-Net model, and produces visualizations of estimated prescription maps.
 
 # Prerequisites
 - Docker (>=28) – for creating the experimental testbed.
@@ -95,7 +95,7 @@ python training-unet-v10-raster-patch.py \
     --dropout 0.25
 ```
 
-Adjust the `--hidden_channels` parameter to `4/8/16` and `72/84/96` for training the small and large TerrAI variants, respectively. After training, use the following methods from `src/helper.py`
+Adjust the `--hidden_channels` parameter to `4/8/16` and `72/84/96` for training the "light" and "heavy" TerrAI variants, respectively. After training, use the following methods from `src/helper.py`
   - `model_inference` - folds model predictions back to full‑size rasters via `st_image_toolkit.unary_union`.
   - `visualize_model_results` - creates side‑by‑side plots of NDVI, ground‑truth prescription, and model prediction with colorbars. 
 
